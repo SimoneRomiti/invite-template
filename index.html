@@ -92,7 +92,7 @@
             </div>
 
 
-            <div ref="scrollResponse" :class="{'animate__animated animate__bounceIn': isVisibleResponse, 'opacity-0': !isVisibleResponse}">
+            <div ref="scrollResponse" :class="{'animate__animated animate__bounceIn': isVisibleText, 'opacity-0': !isVisibleText}">
                <div class="mt-3 lead text-dark">
                   Parteciperai al matrimonio?
                </div>
@@ -178,10 +178,10 @@
 
             this.isInViewPort('scrollText', 'isVisibleText'); // controllo subito
 
-            this._scrollHandler = () => this.isInViewPort('scrollResponse', 'isVisibleResponse');
+            this._scrollHandler = () => this.isInViewPort('scrollResponse', 'isVisibleText');
             window.addEventListener('scroll', this._scrollHandler);
 
-            this.isInViewPort('scrollResponse', 'isVisibleResponse'); // controllo subito
+            this.isInViewPort('scrollResponse', 'isVisibleText'); // controllo subito
          },
       }).mount("#app");
    </script>
