@@ -73,17 +73,34 @@
          <div class="animate__animated animate__zoomIn" v-if="showRest">
             <img class="img-fluid w-100 mt-3 mb-4" style="max-width: 300px;" src="./img/foto1.jpg" alt="">
 
-            <div class="mt-3 lead text-dark">
-               Parteciperai al matrimonio?
+            <div class="row">
+               <div class="col-sm-6">
+                  <div ref="scrollText" :class="{'animate__animated animate__fadeInLeft': isVisibleText, 'opacity-0': !isVisibleText}" class="card card-body my-3">
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.
+                  </div>
+               </div>
+
+               <div class="col-sm-6">
+                  <div ref="scrollText" :class="{'animate__animated animate__fadeInRight': isVisibleText, 'opacity-0': !isVisibleText}" class="my-3 card card-body">
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.
+                  </div>
+               </div>
             </div>
-      
-            <div class="d-flex justify-content-center mt-3">
-               <a class="btn btn-outline-success me-2" :href="confirmForm" target="_blank"><i class="fa-solid fa-check"></i> SI</a>
-               <a class="btn btn-outline-danger" :href="declineForm" target="_blank"><i class="fa-solid fa-xmark"></i> NO</a>
-      
+
+
+            <div ref="scrollResponse" :class="{'animate__animated animate__bounceIn': isVisibleResponse, 'opacity-0': !isVisibleResponse}">
+               <div class="mt-3 lead text-dark">
+                  Parteciperai al matrimonio?
+               </div>
+         
+               <div class="d-flex justify-content-center mt-3">
+                  <a class="btn btn-outline-success me-2" :href="confirmForm" target="_blank"><i class="fa-solid fa-check"></i> SI</a>
+                  <a class="btn btn-outline-danger" :href="declineForm" target="_blank"><i class="fa-solid fa-xmark"></i> NO</a>
+         
+               </div>
             </div>
+
          </div>
-   
    
       </div>
    </div>
@@ -107,7 +124,9 @@
                showButton: false,
                showMessage: false,
                showLinks: false,
-               showRest: false
+               showRest: false,
+               isVisibleText: false,
+               isVisibleResponse: false
             };
          },
 
@@ -129,8 +148,37 @@
 
             startRestAnimation() {
                this.showRest = true;
+            },
+
+            isInViewPort(ref, bool) {
+               console.log(ref);
+               
+               const el = this.$refs[ref];
+               console.log(el);
+               
+               if (!el) return;
+
+               const rect = el.getBoundingClientRect();
+               const altezzaViewport = window.innerHeight || document.documentElement.clientHeight;
+
+               if (rect.top <= altezzaViewport * 0.9) { // entra nell'90% del viewport
+                  this[bool] = true;
+                  window.removeEventListener('scroll', this.isInViewPort); // rimuovo listener dopo animazione
+               }
             }
-         }
+         },
+
+         mounted() {
+            this._scrollHandler = () => this.isInViewPort('scrollText', 'isVisibleText');
+            window.addEventListener('scroll', this._scrollHandler);
+
+            this.isInViewPort('scrollText', 'isVisibleText'); // controllo subito
+
+            this._scrollHandler = () => this.isInViewPort('scrollResponse', 'isVisibleResponse');
+            window.addEventListener('scroll', this._scrollHandler);
+
+            this.isInViewPort('scrollResponse', 'isVisibleResponse'); // controllo subito
+         },
       }).mount("#app");
    </script>
 </body>
