@@ -79,14 +79,30 @@
 
             <div class="row">
                <div class="col-sm-6">
-                  <div ref="scrollText" :class="{'animate__animated animate__fadeInLeft': isVisibleText, 'opacity-0': !isVisibleText}" class="card card-body my-3">
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.
+                  <div ref="scrollText" :class="{'animate__animated animate__fadeInLeft': isVisibleText, 'opacity-0': !isVisibleText}" class="card card-body my-3" style="position: relative;">
+                     <div class="bg-white" style="position: absolute; top: -25px; left: calc(50% - 20px); border: 1px solid #1db5a3; border-radius: 100%; width: 50px; height: 50px;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                           <i class="fa-solid fa-user-tie fs-3"></i>
+                        </div>
+                     </div>
+                     <div class="my-3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.
+                     </div>
                   </div>
                </div>
 
                <div class="col-sm-6">
                   <div ref="scrollText" :class="{'animate__animated animate__fadeInRight': isVisibleText, 'opacity-0': !isVisibleText}" class="my-3 card card-body">
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.
+                     <div class="bg-white"
+                        style="position: absolute; top: -25px; left: calc(50% - 20px); border: 1px solid #1db5a3; border-radius: 100%; width: 50px; height: 50px;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                           <i class="fa-solid fa-plane-departure fs-3"></i>
+                        </div>
+                     </div>
+                     <div class="my-3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem.
+                        Inventore, eaque. Quisquam, quae. Molestias, quia.
+                     </div>
                   </div>
                </div>
             </div>
