@@ -34,15 +34,18 @@
 
 <body>
    <div id="app" style="color: #1db5a3;">
-      <div v-if="!openInvito">
+      <div v-if="!openInvito" class="invito-container animate__animated animate__fadeIn">
+         <img src="./img/fedi.png" alt="" style="max-width: 125px;">
          <h1 class="animate__animated animate__rubberBand" @animationend="startFotoAnimation">
             Sei stato invitato al matrimonio di Simone e Cecilia.
          </h1>
-
-         <div class="animate__animated animate__fadeIn" v-if="showFoto" @animationend="startButtonAnimation">
-            <img class="img-fluid w-100 mt-3 mb-4" style="max-width: 400px;" src="./img/foto2.jpg" alt="">
+      
+         <div class="animate__animated animate__fadeIn foto-container" v-if="showFoto" @animationend="startButtonAnimation">
+            <div class="image-wrapper">
+               <img class="img-fluid" style="border-radius: 10px;" src="./img/foto2.jpg" alt="">
+            </div>
          </div>
-
+      
          <div class="animate__animated animate__tada" v-if="showButton">
             <button class="btn btn-outline-secondary" @click="openInvito = true">
                Apri l'invito
@@ -123,10 +126,23 @@
                   Parteciperai al matrimonio?
                </div>
          
-               <div class="d-flex justify-content-center mt-3">
-                  <a class="btn btn-outline-success me-2" :href="confirmForm" target="_blank"><i class="fa-solid fa-check"></i> SI</a>
-                  <a class="btn btn-outline-danger" :href="declineForm" target="_blank"><i class="fa-solid fa-xmark"></i> NO</a>
+               <!-- <div class="d-flex justify-content-center mt-3">
+                  <a class="btn btn-outline-success me-2"" :href="confirmForm" target="_blank">
+                     <i class="fa-solid fa-check"></i> SI
+                  </a>
+                  <a class="btn btn-outline-danger" :href="declineForm" target="_blank">
+                     <i class="fa-solid fa-xmark"></i> NO
+                  </a>
          
+               </div> -->
+
+               <div class="d-flex justify-content-center mt-3">
+                  <a class="btn btn-invito btn_success me-3" :href="confirmForm" target="_blank">
+                     <i class="fa-solid fa-check"></i> Sì
+                  </a>
+                  <a class="btn btn-invito btn_danger" :href="declineForm" target="_blank">
+                     <i class="fa-solid fa-xmark"></i> No
+                  </a>
                </div>
             </div>
 
@@ -149,7 +165,7 @@
                linkMaps: "https://maps.google.com/?q=43.36270877336705,10.493467509937789",
                linkSite: "https://www.ilcasalemancini.it/",
                confirmForm: "https://docs.google.com/forms/d/e/1FAIpQLSfLws1b_sL77HAw77O0bZZMXU0RuNhUTWHQpZWCdw-3J9ooVw/viewform?usp=pp_url&entry.1250792882=Si",
-               declineForm: "https://docs.google.com/forms/d/e/1FAIpQLSfLws1b_sL77HAw77O0bZZMXU0RuNhUTWHQpZWCdw-3J9ooVw/viewform?usp=pp_url&entry.1250792882=No",
+               declineForm: "https://docs.google.com/forms/d/e/1FAIpQLSfLws1b_sL77HAw77O0bZZMXU0RuNhUTWHQpZWCdw-3J9ooVw/viewform?usp=pp_url&entry.1250792882=No&entry.237150830=0&entry.608514429=-",
                showFoto: false,
                showFotoNostra: false,
                showButton: false,
@@ -218,6 +234,63 @@
    </script>
 
    <style>
+      body {
+         font-family: 'Playfair Display', serif;
+      }
+
+      .invito-container {
+         max-width: 500px;
+         margin: 50px auto;
+         padding: 30px;
+         border: 2px solid #e0cfc4;
+         border-radius: 20px;
+         background: #fff8f0; /* colore “panna” elegante */
+         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+         text-align: center;
+         color: #5a4631;
+      }
+
+      .image-wrapper {
+         width: 100%;
+         overflow: hidden;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+
+      .image-wrapper img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover; 
+         object-position: center;
+      }
+
+      .foto-container {
+         margin: 20px 0;
+         overflow: hidden;
+         border-radius: 15px;
+         border: 1px solid #e0cfc4;
+      }
+
+      .btn-outline-secondary {
+         border-radius: 50px;
+         border: 2px solid #d1bfa7;
+         color: #5a4631;
+         padding: 10px 25px;
+         font-weight: bold;
+         background: linear-gradient(145deg, #fff8f0, #f9f0e6);
+         box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+         transition: all 0.3s ease;
+      }
+
+      .btn-outline-secondary:hover {
+         transform: translateY(-3px);
+         box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+         background: #f9f0e6;
+         /* background: linear-gradient(145deg, #e0cfc4, #f9f0e6); */
+         color: #5a4631;
+      }
+
       .hero {
          position: relative;
          width: 100%;
@@ -264,6 +337,43 @@
 
       .overlay-text p {
          margin-bottom: 1rem;
+      }
+
+      .btn-invito {
+         border-radius: 50px;            /* bordi arrotondati */
+         padding: 10px 25px;             /* più spazio intorno al testo */
+         font-weight: 400;               /* testo leggermente più marcato */
+         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+         transition: all 0.3s ease;
+      }
+
+      .btn-invito:hover {
+         transform: translateY(-6px);
+         box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      }
+
+      .btn_success {
+         background: linear-gradient(135deg, #d4edda, #a8e5a2);
+         border: 2px solid #5cb85c;
+         color: #2f6627;
+      }
+
+      .btn_success:hover {
+         background: linear-gradient(135deg, #d4edda, #a8e5a2);
+         border: 2px solid #63d063;
+         color: #51b043;
+      }
+
+      .btn_danger {
+         background: linear-gradient(135deg, #f8d7da, #f1a1a8);
+         border: 2px solid #d9534f;
+         color: #842029;
+      }
+
+      .btn_danger:hover {
+         background: linear-gradient(135deg, #f8d7da, #f1a1a8);
+         border: 2px solid #f75e59;
+         color: #d93543;
       }
    </style>
 </body>
