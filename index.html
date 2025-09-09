@@ -62,7 +62,7 @@
          </div>
          
          <div class="d-flex justify-content-center">
-            <div class="my-3 animate__animated animate__zoomIn" v-if="showLinks" @animationend="startRestAnimation">
+            <div class="my-3 animate__animated animate__zoomIn" v-if="showLinks" @animationend="startTimelineAnimation">
                <div class="hero d-flex justify-content-center">
                   <img src="./img/mancini4.jpg" alt="Casale Mancini" class="hero-img img-fluid">
                   <div class="overlay-text">
@@ -80,6 +80,65 @@
                            Visita sito web
                         </a>
                      </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div ref="scrollTimeline" class="my-5" :class="{'animate__animated animate__slideInUp': isVisibleTimeline, 'opacity-0': !isVisibleTimeline}" v-if="showTimeline" @animationend="startRestAnimation">
+            <div class="h3 my-3">Wedding Timeline</div>
+            <div class="timeline">
+               <div class="item left">
+                  <div class="d-flex justify-content-end">
+                     <div class="content">
+                        <span class="time">ORE 17:00</span>
+                        <div class="icon" aria-hidden>📍</div>
+                        Arrivo 
+                     </div>
+                  </div>
+               </div>
+            
+               <div class="item right">
+                  <div class="content">
+                     <span class="time">ORE 18:00</span>
+                     <div class="icon" aria-hidden>💍</div>
+                     Inizio cerimonia
+                  </div>
+               </div>
+            
+               <div class="item left">
+                  <div class="d-flex justify-content-end">
+                     <div class="content">
+                        <span class="time">ORE 18:30</span>
+                        <div class="icon" aria-hidden>📷</div>
+                        Fotografia formale
+                     </div>
+                  </div>
+               </div>
+            
+               <div class="item right">
+                  <div class="content">
+                     <span class="time">ORE 19:00</span>
+                     <div class="icon" aria-hidden>🥂</div>
+                     Inizio apericena
+                  </div>
+               </div>
+
+               <div class="item left">
+                  <div class="d-flex justify-content-end">
+                     <div class="content">
+                        <span class="time">ORE 20:00</span>
+                        <div class="icon" aria-hidden>🍽️</div>
+                        Inizio cena
+                     </div>
+                  </div>
+               </div>
+
+               <div class="item right">
+                  <div class="content">
+                     <span class="time">ORE 00:00</span>
+                     <div class="icon" aria-hidden>🎂</div>
+                     Taglio della torta
                   </div>
                </div>
             </div>
@@ -171,9 +230,11 @@
                showButton: false,
                showMessage: false,
                showLinks: false,
+               showTimeline: false,
                showRest: false,
                isVisibleText: false,
-               isVisibleResponse: false
+               isVisibleResponse: false,
+               isVisibleTimeline: false
             };
          },
 
@@ -195,6 +256,10 @@
 
             startLinksAnimation() {
                this.showLinks = true;
+            },
+
+            startTimelineAnimation() {
+               this.showTimeline = true;
             },
 
             startRestAnimation() {
@@ -220,6 +285,11 @@
          },
 
          mounted() {
+            this._scrollHandler = () => this.isInViewPort('scrollTimeline', 'isVisibleTimeline');
+            window.addEventListener('scroll', this._scrollHandler);
+
+            this.isInViewPort('scrollText', 'isVisibleText'); // controllo subito
+
             this._scrollHandler = () => this.isInViewPort('scrollText', 'isVisibleText');
             window.addEventListener('scroll', this._scrollHandler);
 
@@ -374,6 +444,84 @@
          background: linear-gradient(135deg, #f8d7da, #f1a1a8);
          border: 2px solid #f75e59;
          color: #d93543;
+      }
+
+
+      .timeline {
+         position: relative;
+         /* width: 800px; */
+         margin: 0 auto;
+      }
+
+      /* linea centrale */
+      .timeline::before {
+         content: "";
+         position: absolute;
+         top: 0;
+         bottom: 0;
+         left: 50%;
+         width: 4px;
+         background: #1db5a3;
+         transform: translateX(-50%);
+      }
+
+      .item {
+         position: relative;
+         width: 50%;
+         padding: 10px 20px;
+         box-sizing: border-box;
+      }
+
+      /* punto sulla linea */
+      .item::before {
+         content: "";
+         position: absolute;
+         top: 30px;
+         width: 14px;
+         height: 14px;
+         background: #fff;
+         border: 3px solid #1db5a3;
+         border-radius: 50%;
+         z-index: 1;
+      }
+
+      .left {
+         left: 0;
+         text-align: right;
+      }
+      .left::before {
+         right: -7px; /* mezzo diametro sulla linea */
+      }
+
+      .right {
+         left: 50%;
+         text-align: left;
+      }
+      .right::before {
+         left: -7px;
+      }
+
+      .content {
+         background: #fff;
+         padding: 16px 20px;
+         border-radius: 8px;
+         box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+         width: 30%;        /* invece di inline-block */
+         box-sizing: border-box;
+      }
+
+      .time {
+         font-weight: bold;
+         color: #1db5a3;
+         display: block;
+         margin-bottom: 4px;
+      }
+
+      @media (max-width: 900px) {
+         .content {
+            width: 100%;
+            text-align: center;
+         }
       }
    </style>
 </body>
