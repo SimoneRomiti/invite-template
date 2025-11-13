@@ -26,8 +26,12 @@
 
       a.button {
          color: #1db5a3;
-         text-decoration: none;
-         font-weight: bold;
+         text-decoration: underline;
+         transition: color 0.3s ease;
+         font-size: 18px;
+      }
+      a.button:hover {
+         color: #06594f; 
       }
    </style>
 </head>
@@ -54,6 +58,10 @@
       </div>
 
       <div v-else>
+         <div class="animate__animated animate__flipInY">
+            <img src="./img/logoSC.png" alt="" style="max-width: 125px; max-height: 125px;">
+         </div>
+
          <h1 class="animate__animated animate__backInLeft" @animationend="startMessageAnimation">{{ titolo }}</h1>
          <p class="lead text-dark animate__animated animate__backInRight" v-html="messaggio" v-if="showMessage"  @animationend="startFotoNostraAnimation"></p>
 
@@ -63,9 +71,10 @@
          
          <div class="d-flex justify-content-center">
             <div class="my-3 animate__animated animate__zoomIn" v-if="showLinks" @animationend="startTimelineAnimation">
+               <div class="h2">Casale Mancini</div>
                <div class="hero d-flex justify-content-center">
-                  <img src="./img/mancini4.jpg" alt="Casale Mancini" class="hero-img img-fluid">
-                  <div class="overlay-text">
+                  <img src="./img/mancini5.jpg" alt="Casale Mancini" class="hero-img img-fluid">
+                  <!-- <div class="overlay-text">
                      <div class="h2">Casale Mancini</div>
                      <div class="my-3">
                         <i class="fa-solid fa-location-dot fs-4"></i>
@@ -80,8 +89,23 @@
                            Visita sito web
                         </a>
                      </div>
-                  </div>
+                  </div> -->
                </div>
+               
+               <div class="my-3">
+                  📍
+                  <a class="button" :href="linkMaps" target="_blank">
+                     Apri su Google Maps
+                  </a>
+               </div>
+               <div class="my-3">
+                  🏡 
+                  <a class="button ms-1" :href="linkSite" target="_blank">
+                     Visita sito web
+                  </a>
+               </div>
+
+               <p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.</p>
             </div>
          </div>
 
@@ -92,7 +116,7 @@
                   <div class="d-flex justify-content-end">
                      <div class="content">
                         <span class="time">ORE 17:00</span>
-                        <div class="icon" aria-hidden>📍</div>
+                        <div class="icon" aria-hidden>⏰</div>
                         Arrivo 
                      </div>
                   </div>
@@ -220,7 +244,7 @@
             return {
                openInvito: false,
                titolo: "Simone & Cecilia",
-               messaggio: "Ti aspettiamo il 19 giugno 2026 alle ore 17:00! <br> Clicca i link sottostanti per scoprire dove si svolgerà il matrimonio.",
+               messaggio: 'Ti aspettiamo il 19 giugno 2026 alle ore 17:00! <br> Il matrimonio si svolgera presso <strong><i>"Casale Mancini"</i></strong> a Vada (LI).',
                linkMaps: "https://maps.google.com/?q=43.36270877336705,10.493467509937789",
                linkSite: "https://www.ilcasalemancini.it/",
                confirmForm: "https://docs.google.com/forms/d/e/1FAIpQLSfLws1b_sL77HAw77O0bZZMXU0RuNhUTWHQpZWCdw-3J9ooVw/viewform?usp=pp_url&entry.1250792882=Si",
@@ -373,7 +397,6 @@
          height: auto; 
          display: block;
          object-fit: cover;
-         opacity: 0.8;
       }
 
       @media (max-width: 768px) {
