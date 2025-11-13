@@ -65,15 +65,15 @@
          <h1 class="animate__animated animate__backInLeft" @animationend="startMessageAnimation">{{ titolo }}</h1>
          <p class="lead text-dark animate__animated animate__backInRight" v-html="messaggio" v-if="showMessage"  @animationend="startFotoNostraAnimation"></p>
 
-         <div class="my-2 animate__animated animate__zoomIn" v-if="showFotoNostra" @animationend="startLinksAnimation">
+         <div class="my-3 animate__animated animate__zoomIn" v-if="showFotoNostra" @animationend="startLinksAnimation">
             <img class="img-fluid w-100 mt-3 mb-4" style="max-width: 300px;" src="./img/foto1.jpg" alt="">
          </div>
          
          <div class="d-flex justify-content-center">
-            <div class="my-2 animate__animated animate__zoomIn" v-if="showLinks" @animationend="startTimelineAnimation">
+            <div class="my-3 animate__animated animate__zoomIn" v-if="showLinks" @animationend="startTimelineAnimation">
                <div class="h2">Casale Mancini</div>
                <div class="hero d-flex justify-content-center">
-                  <img src="./img/mancini4.jpg" alt="Casale Mancini" class="hero-img img-fluid">
+                  <img src="./img/mancini5resized.jpg" alt="Casale Mancini" class="hero-img img-fluid">
                   <!-- <div class="overlay-text">
                      <div class="h2">Casale Mancini</div>
                      <div class="my-3">
@@ -92,7 +92,7 @@
                   </div> -->
                </div>
 
-               <div class="my-2">
+               <div class="my-3">
                   📍
                   <a class="button" :href="linkMaps" target="_blank">
                      Apri su Google Maps
@@ -109,7 +109,7 @@
             </div>
          </div>
 
-         <div ref="scrollTimeline" class="my-3" :class="{'animate__animated animate__slideInUp': isVisibleTimeline, 'opacity-0': !isVisibleTimeline}" v-if="showTimeline" @animationend="startRestAnimation">
+         <div ref="scrollTimeline" class="my-5" :class="{'animate__animated animate__slideInUp': isVisibleTimeline, 'opacity-0': !isVisibleTimeline}" v-if="showTimeline" @animationend="startRestAnimation">
             <div class="h3 my-3">Wedding Timeline</div>
             <div class="timeline">
                <div class="item left">
