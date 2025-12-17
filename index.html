@@ -105,11 +105,11 @@
                   </a>
                </div>
 
-               <p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.</p>
             </div>
          </div>
-
+         
          <div ref="scrollTimeline" class="my-5" :class="{'animate__animated animate__slideInUp': isVisibleTimeline, 'opacity-0': !isVisibleTimeline}" v-if="showTimeline" @animationend="startRestAnimation">
+            <p class="text-dark my-3">Ecco a voi una timeline dettagliata del matrimonio! 🙃</p>
             <div class="h3 my-3">Wedding Timeline</div>
             <div class="timeline">
                <div class="item left">
@@ -170,7 +170,7 @@
 
          <div class="animate__animated animate__zoomIn" v-if="showRest">
             <div class="lead text-dark mb-3">
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.
+               Amarsi non è guardarsi l'un l'altro, ma guardare insieme nella stessa direzione. <i>(A. D'saint-Exupery)</i>
             </div>
 
             <div class="row">
@@ -182,7 +182,9 @@
                         </div>
                      </div>
                      <div class="my-3">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem. Inventore, eaque. Quisquam, quae. Molestias, quia.
+                        Venite vestiti eleganti come più vi piace e come più vi sentite a vostro agio, vi chiediamo solo di evitare il bianco 🫢.
+                        <br>
+                        Per la cena vi chiediamo di specificare eventuali allergie o intolleranze alimentari.
                      </div>
                   </div>
                </div>
@@ -196,8 +198,9 @@
                         </div>
                      </div>
                      <div class="my-3">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Molestias, quia. Corrupti, quidem.
-                        Inventore, eaque. Quisquam, quae. Molestias, quia.
+                        Non obblighiamo nessuno (invece si 😊), ma se volete contribuire a realizzare il nostro sogno di andare in Giappone, vi ringraziamo tantissimo
+                        <br>
+                        IBAN: XXXXXXXXXXXX
                      </div>
                   </div>
                </div>
@@ -244,7 +247,7 @@
             return {
                openInvito: false,
                titolo: "Simone & Cecilia",
-               messaggio: 'Ti aspettiamo il 19 giugno 2026 alle ore 17:00! <br> Il matrimonio si svolgera presso <strong><i>"Casale Mancini"</i></strong> a Vada (LI).',
+               messaggio: 'Ti aspettiamo il 19 giugno 2026 alle ore 17:30! <br> Il matrimonio si svolgera presso <strong><i>"Casale Mancini"</i></strong> a Vada (LI).',
                linkMaps: "https://maps.google.com/?q=43.36270877336705,10.493467509937789",
                linkSite: "https://www.ilcasalemancini.it/",
                confirmForm: "https://docs.google.com/forms/d/e/1FAIpQLSfLws1b_sL77HAw77O0bZZMXU0RuNhUTWHQpZWCdw-3J9ooVw/viewform?usp=pp_url&entry.1250792882=Si",
